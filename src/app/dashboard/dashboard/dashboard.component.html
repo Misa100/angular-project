@@ -1,1 +1,198 @@
-<p>dashboard works!</p>
+<div class="p-4">
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="col-lg-2 col-md-6 col-sm-6 ms-1">
+            <div class="card text-white card-small" style="width: 18rem;background-color: rgb(155, 192, 220)">
+                <div class="card-body">
+                    <div class="card-icon"><i class="material-icons">content_copy</i></div>
+                    <p class="card-category">Used Space</p>
+                    <h4 class="card-title">49/50 <small>GB</small></h4>
+                    <hr>
+                    <i class="bi bi-exclamation-triangle-fill"></i>  Get More Space...
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 ms-1">
+            <div class="card card-small" style="width: 18rem;background-color: rgb(233, 233, 233);color: #454747;">
+                <div class="card-body">
+                    <div class="card-icon"><i class="material-icons">store</i></div>
+                    <p class="card-category">Revenue</p>
+                    <h4 class="card-title">$34,245</h4>
+                    <hr>
+                    <i class="bi bi-calendar-check-fill" style="font-size: 1.2em;"></i> Last 24 Hours
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 ms-1">
+            <div class="card text-white card-small" style="width: 18rem;background-color: rgb(155, 192, 220)">
+                <div class="card-body">
+                    <i class="bi bi-people-fill"></i>
+                    <p class="card-category">Total Users</p>
+                    <h4 class="card-title">1 500</h4>
+                    <hr>
+                    <i class="bi bi-arrow-clockwise" style="font-size: 1.3em;"></i>  Last updated
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 ms-1">
+            <div class="card card-small" style="width: 18rem;background-color: rgb(233, 233, 233);color: #454747;">
+                <div class="card-body">
+                    <i class="bi bi-collection-fill"></i>
+                    <p class="card-category">Total Collections</p>
+                    <h4 class="card-title">1 700</h4>
+                    <hr>
+                    <i class="bi bi-google" style="font-size: 1.4em;"></i> Tracked from Google
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 ms-1">
+            <div class="card text-white card-small" style="width: 18rem;background-color: rgb(155, 192, 220)">
+                <div class="card-body">
+                    <i class="bi bi-server"></i>
+                    <p class="card-category">Total Connections</p>
+                    <h4 class="card-title">1 000</h4>
+                    <hr>
+                    <i class="bi bi-calendar-check-fill" style="font-size: 1.3em;"></i> From Last Year
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 ms-1">
+            <div class="card card-small" style="width: 18rem;background-color: rgb(233, 233, 233);color: #454747;">
+                <div class="card-body">
+                    <div class="card-icon"><i class="material-icons">info_outline</i></div>
+                    <p class="card-category">Fixed Issues</p>
+                    <h4 class="card-title">75</h4>
+                    <hr>
+                    <i class="bi bi-tag-fill" style="font-size: 1.1em;"></i> Tracked from Github
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card mt-3" style="width: 30%;">
+            <div class="card-body" style="background-color: rgb(237, 237, 237);">
+                <div style="display: block;">
+                    <canvas style="background-color: rgb(234, 234, 235);" class="shadow-md" baseChart
+                        [data]="lineChartDataLinear"
+                        [options]="chartOptions"
+                        [type]="'line'"
+                        [legend]="chartLegend">
+                    </canvas>
+                </div>
+                <h4 class="mt-3" style="color: #454747;">Sales Yearly</h4>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-row mt-3 align-items-center">
+        <div class="card">
+            <div class="card-body" style="background-color: rgb(237, 237, 237);">
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <div style="display: block;">
+                        <canvas style="background-color: rgb(234, 234, 235);" class="shadow-md" baseChart
+                            [data]="pieChartData"
+                            [type]="pieChartType"
+                            [options]="pieChartOptions">
+                        </canvas>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <div><span style="height: 10px; width: 10px; background-color: rgba(255,99,132,0.6); display: inline-block;"></span> Download Sales</div>
+                        <div><span style="height: 10px; width: 10px; background-color: rgba(54,162,235,0.6); display: inline-block;"></span> In-Store Sales</div>
+                        <div><span style="height: 10px; width: 10px; background-color: rgba(255,206,86,0.6); display: inline-block;"></span> Mail-Order Sales</div>
+                    </div>
+                </div>
+                <h4 class="mt-3" style="color: #454747;">Daily sales</h4>
+            </div>
+        </div>
+        <div class="card ms-5" style="width: 34%;">
+            <div class="card-body" style="background-color: rgb(237, 237, 237);">
+                <div style="display: block;">
+                    <canvas style="background-color: rgb(234, 234, 235);" class="shadow-md" baseChart
+                        [data]="barChartData"
+                        [options]="chartOptions"
+                        [type]="'bar'"
+                        [legend]="chartLegend">
+                    </canvas>
+                </div>
+                <h4 class="mt-3" style="color: #454747;">Monthly Revenue</h4>
+            </div>
+        </div>
+        <div class="card ms-5" style="width: 34%;">
+            <div class="card-body" style="background-color: rgb(237, 237, 237);">
+                <div style="display: block;">
+                    <canvas style="background-color: rgb(234, 234, 235);" class="shadow-md" baseChart
+                        [data]="exponentialChartData"
+                        [options]="chartOptions"
+                        [type]="lineChartType"
+                        [legend]="chartLegend">
+                    </canvas>
+                </div>
+                <h4 class="mt-3">Yearly Growth</h4>
+            </div>
+        </div> 
+    </div>
+    <!-- <div class="d-flex flex-row justify-content-between align-items-center" style="margin-top: 34px;">
+        <div class="d-flex flex-column" style="width: 49%;">
+            <span class="px-4 py-2" style="background-color: rgb(239, 238, 238); font-size: large;color: rgb(52, 147, 219)">Table 1</span>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col" style="color: rgb(52, 147, 219); background-color: rgb(170, 197, 218);">#</th>
+                    <th scope="col" style="color: rgb(52, 147, 219); background-color: rgb(170, 197, 218)">First</th>
+                    <th scope="col" style="color: rgb(52, 147, 219); background-color: rgb(170, 197, 218)">Last</th>
+                    <th scope="col" style="color: rgb(52, 147, 219); background-color: rgb(170, 197, 218)">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row" style="color: rgb(52, 147, 219);">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    </tr>
+                    <tr>
+                    <th scope="row" style="color: rgb(52, 147, 219);">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    </tr>
+                    <tr>
+                    <th scope="row" style="color: rgb(52, 147, 219);">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex flex-column" style="width: 48%;">
+            <span class="px-4 py-2" style="background-color: rgb(239, 238, 238); font-size: large;color: rgb(52, 147, 219)">Table 2</span>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="color: rgb(52, 147, 219); background-color: rgb(170, 197, 218)">#</th>
+                        <th scope="col" style="color: rgb(52, 147, 219); background-color: rgb(170, 197, 218)">First</th>
+                        <th scope="col" style="color: rgb(52, 147, 219); background-color: rgb(170, 197, 218)">Last</th>
+                        <th scope="col" style="color: rgb(52, 147, 219); background-color: rgb(170, 197, 218)">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" style="color: rgb(52, 147, 219);">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="color: rgb(52, 147, 219);">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="color: rgb(52, 147, 219);">3</th>
+                        <td colspan="2" class="table-active" style="background-color: rgb(184, 216, 240);">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+     </div> -->
+</div>

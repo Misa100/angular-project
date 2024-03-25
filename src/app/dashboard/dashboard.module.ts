@@ -15,6 +15,7 @@ import { SidenavWrapperComponent } from './sidenav-wrapper/sidenav-wrapper.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InfoComponent } from './info/info.component';
 import { UserComponent } from './user/user.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UserComponent } from './user/user.component';
   ],
   imports: [
     CommonModule,
+    NgApexchartsModule,
     MatToolbarModule,
     MatListModule,
     MatIconModule,

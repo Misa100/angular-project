@@ -1,10 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartType, ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChartType, ChartConfiguration, ChartData, ChartOptions, ChartEvent } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+import { MatButton } from '@angular/material/button';
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexYAxis,
+  ApexLegend,
+  ApexXAxis,
+  ApexTooltip,
+  ApexTheme,
+  ApexGrid,
+  ApexPlotOptions
+} from 'ng-apexcharts';
+
+export type salesChartOptions = {
+  series: ApexAxisChartSeries | any;
+  chart: ApexChart | any;
+  xaxis: ApexXAxis | any;
+  yaxis: ApexYAxis | any;
+  stroke: any;
+  theme: ApexTheme | any;
+  tooltip: ApexTooltip | any;
+  dataLabels: ApexDataLabels | any;
+  legend: ApexLegend | any;
+  colors: string[] | any;
+  markers: any;
+  grid: ApexGrid | any;
+  plotOptions: ApexPlotOptions | any;
+};
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
 
@@ -80,8 +111,60 @@ export class DashboardComponent implements OnInit {
   };
   chartLegend = true;
 
-  constructor() { }
+  @ViewChild("chart") chart: ChartComponent = Object.create(null);
+  public salesChartOptions: Partial<salesChartOptions>;
 
+  constructor() {
+    this.salesChartOptions = {
+      series: [
+        {
+          name: "Iphone 13",
+          data: [0, 31, 40, 28, 51, 42, 109, 100],
+        },
+        {
+          name: "Oneplue 9",
+          data: [0, 11, 32, 45, 32, 34, 52, 41],
+        },
+      ],
+      chart: {
+        fontFamily: 'Rubik,sans-serif',
+        height: 390,
+        type: 'area',
+        toolbar: {
+          show: false
+        },
+      },
+      dataLabels: {
+        enabled: false
+      },
+      colors: ["#9BC0DC", "#79A2C9", "#CFE9F7"],
+      stroke: {
+        curve: "smooth",
+        width: 1,
+      },
+      grid: {
+        strokeDashArray: 3,
+      },
+      markers: {
+        size: 3
+      },
+      xaxis: {
+        categories: [
+          "Jan",
+          "Feb",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "Aug",
+        ],
+      },
+      tooltip: {
+        theme: 'dark'
+      }
+    };
+  }
   ngOnInit(): void {
       
   }

@@ -16,3 +16,11 @@ td, tbody, th, thead {
      font-size: 1px; /* Réduit la taille de l'icône */
  }
  
+ @media (max-width: 767.98px) { /* Bootstrap sm breakpoint */
+    .custom-sm-flex-column {
+        flex-direction: column !important;
+    }
+    .custom-fw-sm {
+        font-size: 14px;
+    }
+}

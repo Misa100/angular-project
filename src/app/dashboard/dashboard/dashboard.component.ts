@@ -16,6 +16,9 @@ import {
   ApexPlotOptions
 } from 'ng-apexcharts';
 
+import {Product,TopSelling} from './top-selling-data';
+import { Feeds,Feed } from './feeds-data';
+
 export type salesChartOptions = {
   series: ApexAxisChartSeries | any;
   chart: ApexChart | any;
@@ -38,6 +41,8 @@ export type salesChartOptions = {
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  topSellingProducts: Product[] = [];  
+  feeds:Feed[] = [];
 
   pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -166,7 +171,8 @@ export class DashboardComponent implements OnInit {
     };
   }
   ngOnInit(): void {
-      
+    this.topSellingProducts = TopSelling;
+    this.feeds = Feeds;
   }
 
   generateExponentialData(base: number, length: number): number[] {

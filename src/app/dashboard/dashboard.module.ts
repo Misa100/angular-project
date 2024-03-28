@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { NgChartsModule } from 'ng2-charts';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,13 +25,12 @@ import { NgApexchartsModule } from 'ng-apexcharts';
   ],
   imports: [
     CommonModule,
-    NgApexchartsModule,
+    NgApexchartsModule ,
     MatToolbarModule,
     MatListModule,
     MatIconModule,
     MatSidenavModule,
     MatFormFieldModule,
-    NgChartsModule,
     MatInputModule,
     DashboardRoutingModule
   ]

@@ -1,23 +1,37 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartType, ChartConfiguration, ChartData, ChartOptions, ChartEvent } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
 import { MatButton } from '@angular/material/button';
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexYAxis,
-  ApexLegend,
-  ApexXAxis,
-  ApexTooltip,
-  ApexTheme,
-  ApexGrid,
-  ApexPlotOptions
-} from 'ng-apexcharts';
+import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexYAxis, ApexLegend, ApexXAxis, ApexTooltip, ApexTheme, ApexGrid, ApexPlotOptions,  ApexNonAxisChartSeries, ApexResponsive, ApexStroke, ApexFill} from 'ng-apexcharts';
 
 import {Product,TopSelling} from './top-selling-data';
 import { Feeds,Feed } from './feeds-data';
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries | any;
+  chart: ApexChart | any;
+  responsive: ApexResponsive[] | any;
+  backgroundColor : string[] | any;
+  hoverBackgroundColor : any | any;
+  pointBackgroundColor : any | any;
+  colors: string[] | any;
+  labels: any | any;
+  borderColor : any | any;
+};
+
+export type exponentialChartOptions = {
+  series: ApexAxisChartSeries | any;
+  chart: ApexChart | any;
+  xaxis: ApexXAxis | any;
+  dataLabels: ApexDataLabels | any;
+  tooltip: ApexTooltip | any;
+  yaxis: ApexYAxis | any;
+  stroke: ApexStroke | any;
+  hoverBackgroundColor : any | any;
+  pointBackgroundColor : any | any;
+  borderColor : any | any;
+  colors: string[] | any;
+  backgroundColor : string[] | any;
+  fill: ApexFill | any;
+};
 
 export type salesChartOptions = {
   series: ApexAxisChartSeries | any;
@@ -44,82 +58,83 @@ export class DashboardComponent implements OnInit {
   topSellingProducts: Product[] = [];  
   feeds:Feed[] = [];
 
-  pieChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    plugins: {
-      legend: {
-        align: 'center',
-        labels: {
-          usePointStyle: true,
-        }
-      }
-    }
-  };
-  pieChartType: ChartType = 'pie';
-  pieChartData: ChartConfiguration['data'] = {
-    // labels: ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'],
-    datasets: [{
-      data: [300, 500, 100],
-      backgroundColor: ['rgba(255,99,132,0.2)', 'rgba(54,162,235,0.2)', 'rgba(255,206,86,0.2)'],
-      hoverBackgroundColor: ['rgba(255,99,132,0.6)', 'rgba(54,162,235,0.6)', 'rgba(255,206,86,0.6)'],
-    }]
-  };
-  
-  // Pour le graphique linéaire - Ventes quotidiennes
-  lineChartType: ChartType = 'line';
-
-  lineChartDataLinear: ChartData<'line'> = {
-    datasets: [{
-      data: [65, 59, 80, 81, 56, 55, 40],
-      label: 'Sales',
-      backgroundColor: '#9BC0DC',
-      borderColor: '#9BC0DC',
-      pointBackgroundColor: '#9BC0DC',
-      fill: false,
-      tension: 0.1
-    }],
-    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul']
-  };
-  lineChartTypeLinear = 'line';
-
-  // Pour le graphique en barres - Revenus mensuels
-  barChartData: ChartData<'bar'> = {
-    datasets: [{
-      data: [45, 37, 60, 70, 46, 33],
-      label: 'Revenue',
-      borderColor: '#9BC0DC',
-      backgroundColor: ['rgba(255,99,132,0.2)', 'rgba(54,162,235,0.2)', 'rgba(255,206,86,0.2)'],
-    }],
-    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun']
-  };
-
-  // Pour simuler un graphique exponentiel - Croissance annuelle
-  exponentialChartData: ChartData<'line'> = {
-    datasets: [{
-      data: this.generateExponentialData(3, 7),
-      label: 'Growth',
-      backgroundColor: '#9BC0DC',
-      borderColor: '#9BC0DC',
-      pointBackgroundColor: '#9BC0DC',
-      fill: false,
-      tension: 0.1
-    }],
-    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021']
-  };
-
-  chartOptions: ChartOptions = {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  };
-  chartLegend = true;
-
   @ViewChild("chart") chart: ChartComponent = Object.create(null);
+
+  public exponentialChartOptions: Partial<exponentialChartOptions> ;
+  public barChartOptions: Partial<ChartOptions>;
   public salesChartOptions: Partial<salesChartOptions>;
+  public pieChartOptions: Partial<ChartOptions>;
 
   constructor() {
+    this.exponentialChartOptions = {
+      series: [
+        {
+          name: "Croissance Exponentielle",
+          data: [1, 3, 9, 27, 81, 243, 729, 2187] // Exemple de données exponentielles
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: false
+        }
+      },
+      backgroundColor: ["#9BC0DC", "#79A2C9", "#CFE9F7"],
+      dataLabels: {
+        enabled: false
+      },
+      tooltip: {
+        x: {
+          format: "dd/MM/yy HH:mm"
+        }
+      },
+      xaxis: {
+        type: 'category',
+        categories: ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"]
+      },    
+    }
+
+    this.barChartOptions = {
+      series: [
+        {
+          name: "Revenue",
+          data: [45000, 52000, 60000, 70000, 78000, 85000]
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 350
+      },
+      colors: ["#9BC0DC", "#79A2C9", "#CFE9F7"],
+      borderColor: '#9BC0DC',
+      pointBackgroundColor: '#9BC0DC',
+    }
+
+    this.pieChartOptions = {
+      series: [44, 55, 13],
+      backgroundColor: ['rgba(255,99,132,0.2)', 'rgba(54,162,235,0.2)', 'rgba(255,206,86,0.2)'],
+      hoverBackgroundColor: ['rgba(255,99,132,0.6)', 'rgba(54,162,235,0.6)', 'rgba(255,206,86,0.6)'],
+      chart: {
+        width: 380,
+        type: "pie"
+      },
+      labels: ["Download Sales", "In-Store Sales", "Mail-Order Sales"],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    }
+    
     this.salesChartOptions = {
       series: [
         {
